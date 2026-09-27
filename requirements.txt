@@ -1,0 +1,17 @@
+# Core Parsing & CS2 Data
+demoparser2>=0.28.0
+
+# Data Manipulation & Formats
+pandas>=2.2.0
+numpy>=1.26.0
+pyarrow>=15.0.0
+fastparquet>=2024.2.0
+
+# Machine Learning & Deep Learning
+torch>=2.2.0
+scikit-learn>=1.4.0
+
+# Utilities
+tqdm>=4.66.0
+requests>=2.31.0
+python-dotenv>=1.0.0

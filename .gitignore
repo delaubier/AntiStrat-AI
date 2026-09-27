@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Large CS2 demo files (do not commit heavy binaries to Git)
+*.dem
+*.dem.gz
+data/raw_demos/*.dem
+data/raw_demos/*.dem.gz
+!data/raw_demos/.gitkeep
+
+# Processed parquet data
+data/processed/*.parquet
+data/processed/*.csv
+!data/processed/.gitkeep
+
+# PyTorch checkpoints and large embedding weights
+data/embeddings/*.pt
+data/embeddings/*.pth
+!data/embeddings/.gitkeep
+!data/embeddings/tactical_scouting_report.json
+
+# Apache Airflow logs & runtime databases
+airflow/logs/
+airflow/*.pid
+airflow/airflow.db
+airflow/airflow.cfg
+
+# Secrets & Local environments
+.env
+.env.local
+
+# IDE & OS specifics
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
