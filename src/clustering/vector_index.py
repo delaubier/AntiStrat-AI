@@ -78,7 +78,7 @@ if __name__ == "__main__":
     from src.models.dataset import CS2TacticalDataset
     from src.models.trainer import TacticalTrainer
 
-    data_file = "data/processed/100-thieves-vs-heroic-m1-dust2_trajectories.parquet"
+    data_file = "data/processed/100-thieves-vs-heroic-m1-dust2_trajectories.csv"
     dataset = CS2TacticalDataset(data_file, team_side="TERRORIST")
     
     trainer = TacticalTrainer()

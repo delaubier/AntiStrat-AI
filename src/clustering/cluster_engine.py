@@ -113,7 +113,7 @@ if __name__ == "__main__":
     from src.models.dataset import CS2TacticalDataset
     from src.models.trainer import TacticalTrainer
 
-    data_file = "data/processed/100-thieves-vs-heroic-m1-dust2_trajectories.parquet"
+    data_file = "data/processed/100-thieves-vs-heroic-m1-dust2_trajectories.csv"
     dataset = CS2TacticalDataset(data_file, team_side="TERRORIST")
     
     # 1. Extraction des embeddings avec le modèle entraîné
@@ -130,7 +130,7 @@ if __name__ == "__main__":
     clustered_df = engine.fit_predict(emb_df)
 
     # 3. Génération du rapport de scouting
-    raw_trajectories = pd.read_parquet(data_file)
+    raw_trajectories = pd.read_parquet(data_file) if str(data_file).endswith(".parquet") else pd.read_csv(data_file)
     from src.parser.map_normalizer import MapNormalizer
     raw_trajectories = MapNormalizer().normalize(raw_trajectories)
 

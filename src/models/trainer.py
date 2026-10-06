@@ -127,7 +127,7 @@ class TacticalTrainer:
 
 
 if __name__ == "__main__":
-    data_file = "data/processed/100-thieves-vs-heroic-m1-dust2_trajectories.parquet"
+    data_file = "data/processed/100-thieves-vs-heroic-m1-dust2_trajectories.csv"
     
     # 1. Préparation du DataLoader
     dataset = CS2TacticalDataset(data_file, team_side="TERRORIST")

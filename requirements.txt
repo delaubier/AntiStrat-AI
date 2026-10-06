@@ -1,11 +1,9 @@
 # Core Parsing & CS2 Data
 demoparser2>=0.28.0
 
-# Data Manipulation & Formats
+# Data Manipulation & Processing
 pandas>=2.2.0
 numpy>=1.26.0
-pyarrow>=15.0.0
-fastparquet>=2024.2.0
 
 # Machine Learning & Deep Learning
 torch>=2.2.0

@@ -30,13 +30,13 @@ def run_full_pipeline(
     # 1. PARSING DE LA DEMO
     print("\n[PHASE 1] Ingestion et parsing binaire avec demoparser2...")
     extractor = CS2DemoExtractor(demo_path)
-    parquet_path = extractor.process_and_save()
+    csv_path = extractor.process_and_save()
 
     # 2. NORMALISATION ET PREPARATION PYTORCH
     print("\n[PHASE 2] Normalisation spatiale et creation du Dataset PyTorch...")
-    dataset = CS2TacticalDataset(parquet_path, team_side=team_side)
+    dataset = CS2TacticalDataset(csv_path, team_side=team_side)
     print(f"[+] Dataset pret : {len(dataset)} manches ({team_side}) converties en tenseurs (46, 30)")
-    loader = get_dataloader(parquet_path, team_side=team_side, batch_size=4, shuffle=True)
+    loader = get_dataloader(csv_path, team_side=team_side, batch_size=4, shuffle=True)
 
     # 3. ENTRAINEMENT DU MODELE DE DEEP LEARNING (AUTOENCODEUR)
     print("\n[PHASE 3] Entrainement de l'Autoencodeur PyTorch...")
@@ -53,7 +53,7 @@ def run_full_pipeline(
     engine = TacticalClusterEngine(n_clusters=n_clusters)
     clustered_df = engine.fit_predict(emb_df)
 
-    raw_trajectories = pd.read_parquet(parquet_path)
+    raw_trajectories = pd.read_csv(csv_path)
     raw_trajectories = MapNormalizer().normalize(raw_trajectories)
     report = engine.generate_scouting_report(clustered_df, raw_trajectories)
 

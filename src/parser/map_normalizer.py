@@ -80,10 +80,10 @@ class MapNormalizer:
 
 if __name__ == "__main__":
     # Test direct sur les données extraites
-    data_path = "data/processed/100-thieves-vs-heroic-m1-dust2_trajectories.parquet"
+    data_path = "data/processed/100-thieves-vs-heroic-m1-dust2_trajectories.csv"
     print(f"[*] Chargement de {data_path}...")
     
-    df = pd.read_parquet(data_path)
+    df = pd.read_csv(data_path)
     normalizer = MapNormalizer()
     normalized_df = normalizer.normalize(df)
 

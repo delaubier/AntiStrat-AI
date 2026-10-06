@@ -39,7 +39,7 @@ class CS2TacticalDataset(Dataset):
         normalizer: MapNormalizer = None
     ):
         """
-        :param data_source: Chemin vers le fichier .parquet ou DataFrame Pandas
+        :param data_source: Chemin vers le fichier .csv ou DataFrame Pandas
         :param team_side: 'TERRORIST' (attaque) ou 'CT' (défense)
         :param expected_players: Nombre de joueurs attendus par équipe (défaut: 5)
         :param expected_timesteps: Nombre de secondes analysées (défaut: 46 pour 0s à 45s)
@@ -53,7 +53,11 @@ class CS2TacticalDataset(Dataset):
 
         # 1. Chargement des données
         if isinstance(data_source, (str, Path)):
-            df = pd.read_parquet(data_source)
+            src_str = str(data_source)
+            if src_str.endswith(".parquet"):
+                df = pd.read_parquet(data_source)
+            else:
+                df = pd.read_csv(data_source)
         elif isinstance(data_source, pd.DataFrame):
             df = data_source.copy()
         else:
@@ -127,7 +131,7 @@ class CS2TacticalDataset(Dataset):
 
 
 def get_dataloader(
-    parquet_path: Union[str, Path],
+    csv_path: Union[str, Path],
     team_side: str = "TERRORIST",
     batch_size: int = 4,
     shuffle: bool = True
@@ -135,12 +139,12 @@ def get_dataloader(
     """
     Fonction utilitaire pour obtenir directement un DataLoader prêt à l'emploi.
     """
-    dataset = CS2TacticalDataset(parquet_path, team_side=team_side)
+    dataset = CS2TacticalDataset(csv_path, team_side=team_side)
     return DataLoader(dataset, batch_size=batch_size, shuffle=shuffle)
 
 
 if __name__ == "__main__":
-    data_file = "data/processed/100-thieves-vs-heroic-m1-dust2_trajectories.parquet"
+    data_file = "data/processed/100-thieves-vs-heroic-m1-dust2_trajectories.csv"
     print(f"[*] Chargement du Dataset pour l'équipe attaquante (TERRORIST)...")
     
     dataset_t = CS2TacticalDataset(data_file, team_side="TERRORIST")

@@ -161,7 +161,7 @@ if __name__ == "__main__":
     print(f"[+] Modèle créé avec succès ! ({total_params:,} paramètres entraînables)")
 
     # Test avec de vraies données du DataLoader
-    data_file = "data/processed/100-thieves-vs-heroic-m1-dust2_trajectories.parquet"
+    data_file = "data/processed/100-thieves-vs-heroic-m1-dust2_trajectories.csv"
     loader = get_dataloader(data_file, team_side="TERRORIST", batch_size=4)
 
     for batch in loader:

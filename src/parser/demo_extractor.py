@@ -126,12 +126,12 @@ class CS2DemoExtractor:
         step_seconds: float = 1.0
     ) -> Path:
         """
-        Extrait et sauvegarde les trajectoires au format Parquet.
+        Extrait et sauvegarde les trajectoires au format CSV.
         """
         out_path = Path(output_dir)
         out_path.mkdir(parents=True, exist_ok=True)
         
-        file_dest = out_path / f"{self.demo_path.stem}_trajectories.parquet"
+        file_dest = out_path / f"{self.demo_path.stem}_trajectories.csv"
         
         print(f"[*] Traitement de la démo : {self.demo_path.name}")
         df = self.extract_tactical_trajectories(
@@ -139,7 +139,7 @@ class CS2DemoExtractor:
             step_seconds=step_seconds
         )
         
-        df.to_parquet(file_dest, index=False, engine="pyarrow")
+        df.to_csv(file_dest, index=False)
         print(f"[+] Succès : {len(df):,} lignes extraites -> {file_dest}")
         print(f"[i] Rounds traités : {df['round_index'].nunique()} | Map : {df['map_name'].iloc[0] if not df.empty else 'N/A'}")
         
