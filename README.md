@@ -8,6 +8,8 @@
 [![Pandas](https://img.shields.io/badge/Pandas-2.2%2B-150458.svg)](https://pandas.pydata.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
+🌐 **Language / Langue** : **English 🇬🇧** • [Français 🇫🇷](README.fr.md)
+
 An end-to-end Machine Learning pipeline that processes high-frequency game telemetry into tactical vector embeddings, automated playbook discovery, and similarity-based round retrieval for professional esports teams.
 
 ---
